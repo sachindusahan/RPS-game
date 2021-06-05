@@ -1,11 +1,19 @@
 import random
+import time
+
+
+end_c = '\033[0;0m'
+red = '\033[2;31;40m'
+green = '\033[2;32;40m'
 
 start = None
 user_score = 0
 computer_score = 0
+
 def control(select):
     global user_score
     global computer_score
+
     if select == 1:
         generate = random.randint(1, 3)
         if generate == 1:
@@ -48,7 +56,7 @@ def control(select):
             print('YOU: Scissor  SCORE: ', user_score)
             print('FRIEND: Scissor  SCORE: ', computer_score)
     else:
-        print('input Error')
+        print(f'{red}input Error{end_c}')
 
 
 while start != 'no':
@@ -59,10 +67,14 @@ while start != 'no':
 
     # Call to the control function
     control(check)
+    prompt = f'Are you want to replay({green}yes{end_c}/{red}no{end_c}): '
     if computer_score == 100:
         print('You lose')
-        start = input('Are you want to replay(yes/no)')
+        start = input(prompt)
+        time.sleep(0.2)
+        print(f'{red}-{end_c}', end="")
     elif user_score == 100:
         print('You won')
-        start = input('Are you want to replay(yes/no)')
-    
+        start = input(prompt)
+        time.sleep(0.2)
+        print(f'{red}-{end_c}', end="")
